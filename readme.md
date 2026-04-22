@@ -148,10 +148,10 @@ Open:
 http://localhost:5173
 
 Preview
-![alt text](frontend/assets/home.png)
-![alt text](frontend/assets/results.png)
-![alt text](frontend/assets/roadmap.png)
-![alt text](frontend/assets/history.png)
+![Home](/frontend/assets/home.png)
+![Results](/frontend/assets/results.png)
+![Roadmap](/frontend/assets/roadmap.png)
+![History](/frontend/assets/history.png)
 
 Key takeaways
 
