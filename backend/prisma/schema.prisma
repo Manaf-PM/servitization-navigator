@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Opportunity {
+  id               String         @id @default(cuid())
+  ideaTitle        String
+  valueProposition String
+  targetCustomer   String
+  customerProblem  String
+  revenuePotential String?
+  strategicFit     String?
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+
+  assessments      Assessment[]
+}
+
+model Assessment {
+  id                    String          @id @default(cuid())
+  opportunityId         String
+  answersJson           String
+  currentModel          String
+  secondaryModel        String
+  recommendedTransition String
+  complexity            String
+  opportunityScore      Int
+  goDecision            String
+  createdAt             DateTime        @default(now())
+
+  opportunity           Opportunity     @relation(fields: [opportunityId], references: [id], onDelete: Cascade)
+  analysisResult        AnalysisResult?
+}
+
+model AnalysisResult {
+  id                        String      @id @default(cuid())
+  assessmentId              String      @unique
+  executiveSummary          String
+  opportunityEvaluationJson String
+  strategicRationaleJson    String
+  priorityActionsJson       String
+  keyRisksJson              String
+  decisionRationale         String
+  roadmapJson               String
+  createdAt                 DateTime    @default(now())
+
+  assessment                Assessment  @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+}
