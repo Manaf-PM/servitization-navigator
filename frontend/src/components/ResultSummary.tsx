@@ -5,9 +5,10 @@ type ResultSummaryProps = {
 };
 
 function normalizeLabel(value: string): string {
-  return value.replaceAll("_", " ").replace(/\b\w/g, (char) => char.toUpperCase());
+  return value
+    .replace(/_/g, " ")
+    .replace(/\b\w/g, (char: string) => char.toUpperCase());
 }
-
 function getDecisionClass(decision: string): string {
   if (decision === "GO") return "decision-go";
   if (decision === "NO GO") return "decision-no-go";

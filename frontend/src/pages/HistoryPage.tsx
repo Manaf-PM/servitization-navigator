@@ -12,7 +12,9 @@ function formatDate(value: string): string {
 }
 
 function normalizeLabel(value: string): string {
-  return value.replaceAll("_", " ").replace(/\b\w/g, (char) => char.toUpperCase());
+  return value
+    .replace(/_/g, " ")
+    .replace(/\b\w/g, (char: string) => char.toUpperCase());
 }
 
 export default function HistoryPage({ onBack }: HistoryPageProps) {
