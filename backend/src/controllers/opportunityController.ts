@@ -70,7 +70,8 @@ export async function getOpportunities(_req: Request, res: Response) {
 
 export async function getOpportunity(req: Request, res: Response) {
   try {
-    const item = await getOpportunityById(req.params.id);
+    const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+    const item = await getOpportunityById(id);
 
     if (!item) {
       return res.status(404).json({ error: "Opportunity not found" });
